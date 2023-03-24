@@ -191,7 +191,10 @@ scrollToObject(RenderObject object, ScrollController scrollController,
   // Calculate the offset needed to show the object in the [ScrollView]
   // so that its bottom touches the top of the keyboard.
   final viewport = RenderAbstractViewport.of(object);
-  final offset = viewport.getOffsetToReveal(object, 1.0).offset + overscroll;
+  var offset = 0.0;
+  if (viewport != null) {
+    offset = viewport.getOffsetToReveal(object, 1.0).offset + overscroll;
+  }
 
   // If the object is covered by the keyboard, scroll to reveal it,
   // and add [focusPadding] between it and top of the keyboard.
